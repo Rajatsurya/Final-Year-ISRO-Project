@@ -1,0 +1,26 @@
+# encoding: utf-8
+# 2019 R3
+SetScriptVersion(Version="19.5.112")
+system1 = GetSystem(Name="SYS")
+model1 = system1.GetContainer(ComponentName="Model")
+model1.Edit()
+model1.Exit()
+engineeringData1 = system1.GetContainer(ComponentName="Engineering Data")
+material1 = engineeringData1.GetMaterial(Name="Aluminum Alloy")
+matlProp1 = material1.GetProperty(Name="Elasticity")
+matlProp1.SetData(
+    Variables=["Young's Modulus"],
+    Values=[["69800 [MPa]"]])
+matlProp2 = material1.GetProperty(Name="Tensile Yield Strength")
+matlProp2.SetData(
+    Variables=["Tensile Yield Strength"],
+    Values=[["276 [MPa]"]])
+matlProp3 = material1.GetProperty(Name="Compressive Yield Strength")
+matlProp3.SetData(
+    Variables=["Compressive Yield Strength"],
+    Values=[["276 [MPa]"]])
+modelComponent1 = system1.GetComponent(Name="Model")
+modelComponent1.Refresh()
+model1.Edit()
+model1.Exit()
+Save(Overwrite=True)
